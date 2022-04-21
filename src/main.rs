@@ -13,7 +13,6 @@ use crate::audio::init_audio;
 use crate::gfx::draw_box;
 
 mod gfx;
-mod serial;
 mod audio;
 
 pub struct SexInfo {
