@@ -1,0 +1,15 @@
+[package]
+name = "sex"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+uefi = { version = "0.15.0", features = ["exts"] }
+uefi-services = "0.12.0"
+spin = "0.9.3"
+tinypci = { git = "https://github.com/kennystrawnmusic/tinypci.git"}
+[dependencies.lazy_static]
+version = "1.4.0"
+features = ["spin_no_std"]
