@@ -9,11 +9,12 @@ use lazy_static::lazy_static;
 use spin::Mutex;
 use uefi::prelude::*;
 use uefi::proto::console::gop::{BltOp, BltPixel, BltRegion, GraphicsOutput, PixelFormat};
-use crate::audio::init_audio;
+use crate::audio::init_all_audio;
 use crate::gfx::draw_box;
 
 mod gfx;
 mod audio;
+mod serial;
 
 pub struct SexInfo {
     pub page_two: Mutex<Vec<BltPixel>>,
@@ -90,7 +91,7 @@ fn main(_handle: Handle, mut system_table: SystemTable<Boot>) -> Status {
 
     draw_box(50,50,100,100,BltPixel::new(255,255,255));
 
-    let audio_devices = init_audio().unwrap();
+    let audio_devices = init_all_audio().unwrap();
     if audio_devices > 0 {
         draw_box(50,150,100,100,BltPixel::new(0,255,0));
     } else {
@@ -101,7 +102,7 @@ fn main(_handle: Handle, mut system_table: SystemTable<Boot>) -> Status {
     update_videobuffer(gop);
 
     // pause
-    system_table.boot_services().stall(1000000);
+    system_table.boot_services().stall(1000000000000);
 
     Status::SUCCESS
 }
