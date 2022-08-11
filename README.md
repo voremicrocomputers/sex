@@ -1,2 +1,2 @@
 # sex
-the windows boot loader
+the wukkOS boot loader
